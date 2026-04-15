@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title> Ucapan Ulang Tahun Untuk Ibu 💌</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background: #fbeec1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Amplop */
+.envelope {
+  width: 300px;
+  height: 200px;
+  background: #ff6f91;
+  position: relative;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.envelope::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #ff8fab;
+  clip-path: polygon(0 0, 50% 50%, 100% 0);
+}
+
+.text-open {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 80px;
+  color: white;
+  font-weight: bold;
+}
+
+/* Surat */
+.surat {
+  display: none;
+  background: white;
+  padding: 30px;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+img {
+  width: 200px;
+  border-radius: 15px;
+  margin-top: 15px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.ttd {
+  margin-top: 20px;
+  text-align: right;
+  font-style: italic;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Musik -->
+<audio autoplay loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3">
+</audio>
+
+<!-- Amplop -->
+<div class="envelope" onclick="bukaSurat()" id="amplop">
+  <div class="text-open">Klik untuk buka 💌</div>
+</div>
+
+<!-- Surat -->
+<div class="surat" id="surat">
+  <h2 id="judul"></h2>
+
+  <!-- FOTO -->
+  <img src="IMG-20260408-WA0056(1).jpg" alt="HBD">
+
+  <p id="isi"></p>
+
+  <!-- Kue -->
+  <div style="margin-top:20px;">
+    <h3>🎂 Make a wish 🎂</h3>
+    <div onclick="tiupLilin()" style="cursor:pointer; font-size:50px;">
+      🕯️🕯️🕯️
+    </div>
+    <p id="wishText" style="display:none;">✨ Harapan kamu pasti terkabul ✨</p>
+  </div>
+
+  <div class="ttd" id="ttd"></div>
+</div>
+
+<!-- Confetti -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+function bukaSurat() {
+  document.getElementById("amplop").style.display = "none";
+  document.getElementById("surat").style.display = "block";
+
+  confetti({
+    particleCount: 120,
+    spread: 90,
+    origin: { y: 0.6 }
+  });
+
+  ketikJudul("💌 for my mom 💌", 0);
+}
+
+function ketikJudul(text, i) {
+  if (i < text.length) {
+    document.getElementById("judul").innerHTML += text.charAt(i);
+    setTimeout(() => ketikJudul(text, i + 1), 80);
+  } else {
+    ketikIsi();
+  }
+}
+
+function ketikIsi() {
+  let text = `hiiiii mommm <3
+
+Selamat ulang tahun ye mak 🎉  
+
+Semoga mak bahagia selalu, sehat, dipanjangkan umurnye dan semua impian segera tercapai, aamiin.
+
+intinya semua doa terbaik untuk mak:)
+
+maaf tahun ini vian blum bise ngasi apa apa, 
+
+Makasih mak udah jadi orang tua yang baik buat vian 💖`;
+
+  let i = 0;
+  function typing() {
+    if (i < text.length) {
+      document.getElementById("isi").innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typing, 40);
+    } else {
+      ketikTtd();
+    }
+  }
+  typing();
+}
+
+function ketikTtd() {
+  let text = "Dari: (Viannn 🤍)";
+  let i = 0;
+  function typing() {
+    if (i < text.length) {
+      document.getElementById("ttd").innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typing, 60);
+    }
+  }
+  typing();
+}
+
+function tiupLilin() {
+  document.getElementById("wishText").style.display = "block";
+
+  confetti({
+    particleCount: 150,
+    spread: 100,
+    origin: { y: 0.6 }
+  });
+}
+</script>
+
+</body>
+</html>
